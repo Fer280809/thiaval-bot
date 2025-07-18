@@ -1,11 +1,10 @@
 import fs from "fs";
-import { DATABASE_DIR, USERS_FILE, DEUDORES_FILE } from "./config.js";
+import { DATABASE_DIR, USERS_FILE } from "./config.js";
 
 // Asegura que los archivos y carpeta existan
 function ensureDatabase() {
   if (!fs.existsSync(DATABASE_DIR)) fs.mkdirSync(DATABASE_DIR);
   if (!fs.existsSync(USERS_FILE)) fs.writeFileSync(USERS_FILE, "{}");
-  if (!fs.existsSync(DEUDORES_FILE)) fs.writeFileSync(DEUDORES_FILE, "[]");
 }
 
 // Lee y escribe JSON genérico
@@ -35,6 +34,9 @@ export function removeUser(jid) {
   delete users[jid];
   writeJSON(USERS_FILE, users);
 }
+export function setAllUsers(users) {
+  writeJSON(USERS_FILE, users);
+}
 
 // Historial de acciones/processos de un usuario
 export function logUserAction(jid, action) {
@@ -43,16 +45,4 @@ export function logUserAction(jid, action) {
   if (!users[jid].historico) users[jid].historico = [];
   users[jid].historico.push({ action, date: new Date().toISOString() });
   writeJSON(USERS_FILE, users);
-}
-
-// Deudores (lista descargada de la web)
-export function getDeudoresWeb() {
-  return readJSON(DEUDORES_FILE);
-}
-export function setDeudoresWeb(list) {
-  writeJSON(DEUDORES_FILE, list);
-}
-export function findDeudorByJid(jid) {
-  const deudores = getDeudoresWeb();
-  return deudores.find(x => x.jid === jid);
 }
