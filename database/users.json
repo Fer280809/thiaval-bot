@@ -1,0 +1,11 @@
+{
+  "5215552345678@s.whatsapp.net": {
+    "nombre": "Juan Pérez",
+    "deuda": 1500,
+    "vencimiento": "2025-07-30",
+    "esDeudor": true,
+    "historico": [
+      { "action": "Enviado recordatorio automático de deuda próxima a vencer.", "date": "2025-07-18T19:00:00Z" }
+    ]
+  }
+}
