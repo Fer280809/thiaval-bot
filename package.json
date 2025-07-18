@@ -1,0 +1,14 @@
+{
+  "name": "thiaval-bot",
+  "version": "1.0.0",
+  "description": "Bot de WhatsApp para cobranza con Baileys",
+  "main": "thiaval-bot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node thiaval-bot.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.6.0",
+    "axios": "^1.6.7"
+  }
+}
